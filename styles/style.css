@@ -40,21 +40,32 @@ main {
     text-align: right;
     border-radius: 25px;
     border: 1px solid black;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    font-size: larger;
+    justify-content: right;
+    align-content: right;
     margin: 20px;
+    padding: 5px 20px;
     vertical-align: auto;
+    height: auto;
+    display: grid;
+    grid-template-rows: auto auto;
 
 }
 
-#content-container, #result-container {
-    padding: 5px 20px;
+#content-container {
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    vertical-align: auto;
+    font-family: 'Abel', sans-serif;
+    vertical-align: bottom;
+}
+
+#result-container {
     align-items: center;
     justify-content: center;
     text-align: right;
     vertical-align: auto;
     font-family: 'Abel', sans-serif;
+    vertical-align: bottom;
 }
 

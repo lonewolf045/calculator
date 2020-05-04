@@ -43,6 +43,7 @@ const dot = document.querySelector('#dot');
 let var1 = '';
 let var2 = '';
 let operatorApply = '';
+let equations = '';
 
 operator.forEach((button) => {
     button.addEventListener('click', (e) => {
@@ -185,31 +186,7 @@ operators.forEach((button) => {
     });
 });
 
-operators.forEach((button) => {
-    button.addEventListener('click', (e) => {
-        if (button.textContent === '=') {
-            if(var2 === '') {
-                return;
-            }
-            var1 = operate(var1, var2, operatorApply);
-            if(var1 == 'Infinity') {
-                display.textContent = 'ERROR!';
-                operands.textContent = 'ERROR!';
-            } else {
-                display.textContent = var1;
-                operands.textContent = var1;
-                console.log(var1);
-            }
-            //var1 = '';
-            var2 = '';
-            operatorApply = '';
-            return;
-        }
-    });
-});
 console.log(dot);
-
-
 
 //console.log(btnNumbers,display,operator,operators);
 
