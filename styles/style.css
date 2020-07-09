@@ -9,14 +9,32 @@ main {
 }
 #calculator {
    width: 400px; 
-   height: 400px;
+   height: auto;
    display: grid;
    grid-template-columns: auto auto auto auto;
-   grid-gap: 2px;
+   grid-gap: 0px;
    border: 1px solid black;
    margin: 30px;
    padding : 30px;
    margin: auto;
+   border: 5px solid black;
+   border-radius: 25px;
+}
+
+#containers {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    width: 400px;
+    height: 300px;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 0px;
+    border: 1px solid black;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 27.5px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 
 .buttons{
@@ -29,28 +47,35 @@ main {
 .num {
     background-color: beige;
     border: none;
+    border: 2px solid black;
 }
 
 .operator, .operators {
     background-color: rgb(199, 199, 110);
     border: none;
+    border: 2px solid black;
 }
 
 .display {
+    width: 396px;
+    height: 70px;
     grid-column-start: 1;
     grid-column-end: 5;
     text-align: right;
     border-radius: 25px;
-    border: 1px solid black;
+    border: 4px solid black;
     justify-content: right;
     align-content: right;
-    margin: 20px;
-    padding: 5px 20px;
+    margin: 20px 0px;
+    padding: 5px 0px;
     vertical-align: auto;
-    height: auto;
     display: grid;
     grid-template-rows: auto auto;
-
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-bottom: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 #content-container {
@@ -60,14 +85,29 @@ main {
     vertical-align: auto;
     font-family: 'Abel', sans-serif;
     vertical-align: bottom;
+    padding-right: 25px;
+    padding-top: 5px;
+    font-size: 20px;
 }
 
 #result-container {
+    padding-right: 25px;
     align-items: center;
     justify-content: center;
     text-align: right;
     vertical-align: auto;
     font-family: 'Abel', sans-serif;
     vertical-align: bottom;
+    padding-top: 5px;
+    font-size: 20px;
+}
+
+
+#eq {
+    border-bottom-right-radius: 25px;
+}
+
+#zero {
+    border-bottom-left-radius: 25px;
 }
 
