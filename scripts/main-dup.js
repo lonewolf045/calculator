@@ -43,7 +43,7 @@ const dot = document.querySelector('#dot');
 let var1 = '';
 let var2 = '';
 let operatorApply = '';
-let equations = '';
+let expressionString = '';
 
 operator.forEach((button) => {
     button.addEventListener('click', (e) => {
@@ -131,6 +131,7 @@ buttonNumbers.forEach((button) => {
                     button.disabled = true;
             }
         }
+        expressionString += button.textContent;
     });
 });
 
@@ -163,6 +164,7 @@ operators.forEach((button) => {
             operatorApply = button.textContent;
             display.textContent += button.textContent;
             dot.disabled = false;
+            expressionString += button.textContent;
             return;
         }
         if (button.textContent === '=') {
@@ -186,8 +188,60 @@ operators.forEach((button) => {
     });
 });
 
+operators.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        if (button.textContent === '=') {
+            if(var2 === '') {
+                return;
+            }
+            var1 = operate(var1, var2, operatorApply);
+            if(var1 == 'Infinity') {
+                display.textContent = 'ERROR!';
+                operands.textContent = 'ERROR!';
+            } else {
+                display.textContent = var1;
+                operands.textContent = var1;
+                console.log(var1);
+            }
+            //var1 = '';
+            var2 = '';
+            operatorApply = '';
+            return;
+        }
+    });
+});
 console.log(dot);
+
+const compute = (() => {
+    const parsePlusSeparatedExpression = (expression) => {
+        // lets say expression = 123 + 58 + 49
+        const numbersString = expression.split('+'); // ["123", "58", "49"]
+          
+            // convert string to number, you may also use parseInt for readability
+        const numbers = numbersString.map(noStr => +noStr); // [123, 58, 49]
+        const initialValue = 0.0;
+            // accumulate all values
+        const result = numbers.reduce((acc, no) => acc + no, initialValue);
+        return result;
+    };
+
+    return {parsePlusSeparatedExpression};
+})();
 
 //console.log(btnNumbers,display,operator,operators);
 
 //console.log(operate(5,4,'%'));
+
+const postfixMaker = ((doc) => {
+    const parsePlusSeparatedExpression = (expression) => {
+        // lets say expression = 123 + 58 + 49
+        const numbersString = expression.split('+'); // ["123", "58", "49"]
+          
+            // convert string to number, you may also use parseInt for readability
+        const numbers = numbersString.map(noStr => +noStr); // [123, 58, 49]
+        const initialValue = 0.0;
+            // accumulate all values
+        const result = numbers.reduce((acc, no) => acc + no, initialValue);
+        return result;
+    };
+})(document);

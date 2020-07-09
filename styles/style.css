@@ -28,10 +28,12 @@ main {
 
 .num {
     background-color: beige;
+    border: none;
 }
 
 .operator, .operators {
     background-color: rgb(199, 199, 110);
+    border: none;
 }
 
 .display {
