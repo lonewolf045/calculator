@@ -248,6 +248,147 @@ operators.forEach((button) => {
 });*/
 console.log(dot);
 
+let pressed = 0;
+
+window.addEventListener('keypress',(e) => {
+    console.log(e)
+    if(e.key <= '9' && e.key >= '0' || e.key == '.') {
+        console.log('Clicked',e.key);
+        if(e.key == '.' && pressed === 0) {
+            pressed = 1;
+            operands.textContent += e.key;
+            varNew += e.key;
+            expressionString += e.key;
+            display.textContent += e.key;
+        } else if(e.key == '.' && pressed === 1) {
+            return;
+        } else {
+            if (display.textContent !== '0') {
+                //display.textContent += button.textContent;
+            } else {
+                operands.textContent = '';
+                display.textContent = '';
+                //operatorApply = '';
+            }
+            if (operatorApply === '') {
+                //var1 += button.textContent;
+                var1 += e.key;
+                operands.textContent += e.key;
+                //if (/./.test(var1) && e.key === '.'&& pressed === 0) {
+                    //pressed = 1;
+                    //operands.textContent += button.textContent;
+                    //operands.textContent += e.key;
+            } else {
+                if (var2 === '') {
+                    //operands.textContent = button.textContent;
+                    operands.textContent = e.key;
+                } else {
+                    //operands.textContent += button.textContent;
+                    operands.textContent += e.key;
+                }
+                var2 += e.key;
+                    //if (/./.test(var1) && e.key === '.')
+                        //button.disabled = true;
+                }
+            varNew += e.key;
+                //}
+            expressionString += e.key;
+            display.textContent += e.key;
+        }
+    } else if (e.key == '+' || e.key == '-' || e.key == '*' || e.key == '/' || e.key == '=') {
+        if (e.key !== '=') {
+            if (e.key === '-' && display.textContent === '0') {
+                display.textContent = '-';
+                var1 = '-';
+                varNew = '-';
+                expressionString += e.key;
+                return;
+            }
+            if (e.key === '+' && display.textContent === '0') {
+                return;
+            }
+            if (var2 !== '') {
+                expressionNew += varNew;
+                varNew = '';
+                var1 = operate(var1, var2, operatorApply);
+                if(var1 == 'Infinity') {
+                    display.textContent = 'ERROR!';
+                    operands.textContent = 'ERROR!';
+                } else {
+                    //display.textContent = var1;
+                    operands.textContent = '0';
+                    console.log(var1);
+                }
+                //operands.textContent = var1;
+                var2 = '';
+            } else {
+                expressionNew += varNew;
+                varNew = '';
+                operands.textContent = '0';
+            }
+            if(e.key === '*') {
+                operatorApply = 'x';
+                display.textContent += '  x ';
+                pressed = 0;
+                expressionString += ' x ';
+                expressionNew += ' x ';
+            } else if (e.key === '/') {
+                operatorApply = '÷';
+                display.textContent += '  ÷ ';
+                pressed = 0;
+                expressionString += ' ÷ ';
+                expressionNew += ' ÷ ';
+            } else {
+                operatorApply = e.key;
+                display.textContent += ` ${e.key} `;
+                pressed = 0;
+                expressionString += ` ${e.key} `;
+                expressionNew += ` ${e.key} `;
+            }
+            return;
+        }
+        if (e.key === '=') {
+            if(var2 === '') {
+                return;
+            }
+            expressionNew += varNew;
+            var1 = compute.computeExpression(expressionNew);
+            varNew = var1;
+            expressionNew = '';
+            if(var1 == 'Infinity') {
+                display.textContent = 'ERROR!';
+                operands.textContent = 'ERROR!';
+            } else {
+                display.textContent = var1;
+                operands.textContent = var1;
+                console.log(var1);
+            }
+            var1 = '';
+            var2 = '';
+            operatorApply = '';
+            return;
+        }
+    } 
+});
+window.addEventListener('keydown',(e) => {
+    //console.log(e);
+    if (e.key === 'Backspace') {
+        console.log('clicked',e.key,e.shiftKey);
+        if(e.shiftKey === true) {
+            console.log('AC activated');
+            display.textContent = '0';
+            var1 = '';
+            var2 = '';
+            operatorApply = '';
+            dot.disabled = false;
+            operands.textContent = '0';
+            expressionString = '';
+            expressionNew = '';
+            varNew = '';
+        }
+    }
+});
+
 const compute = (() => {
     const parseDivisionSeparatedExpression = (expression) => {
         const numbersString = expression.split('÷');
