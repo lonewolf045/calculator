@@ -18,14 +18,14 @@ main {
    padding : 30px;
    margin: auto;
    border: 5px solid black;
-   border-radius: 25px;
+   border-radius: 50px;
 }
 
 #containers {
     grid-column-start: 1;
     grid-column-end: 5;
     width: 400px;
-    height: 300px;
+    height: 400px;
     display: grid;
     grid-template-columns: auto auto auto auto;
     grid-gap: 0px;
@@ -48,17 +48,19 @@ main {
     background-color: beige;
     border: none;
     border: 2px solid black;
+    font-size: 22px;
 }
 
 .operator, .operators {
     background-color: rgb(199, 199, 110);
     border: none;
     border: 2px solid black;
+    font-size: 24px;
 }
 
 .display {
     width: 396px;
-    height: 70px;
+    height: auto;
     grid-column-start: 1;
     grid-column-end: 5;
     text-align: right;
@@ -67,15 +69,15 @@ main {
     justify-content: right;
     align-content: right;
     margin: 20px 0px;
-    padding: 5px 0px;
+    padding: 10px 0px;
     vertical-align: auto;
     display: grid;
     grid-template-rows: auto auto;
     margin-bottom: 0px;
-    padding-bottom: 0px;
     border-bottom: 0px;
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
+    align-items: center;
 }
 
 #content-container {
@@ -87,7 +89,8 @@ main {
     vertical-align: bottom;
     padding-right: 25px;
     padding-top: 5px;
-    font-size: 20px;
+    font-size: 28px;
+    padding-bottom: 5px;
 }
 
 #result-container {
@@ -99,7 +102,7 @@ main {
     font-family: 'Abel', sans-serif;
     vertical-align: bottom;
     padding-top: 5px;
-    font-size: 20px;
+    font-size: 28px;
 }
 
 

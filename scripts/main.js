@@ -371,7 +371,7 @@ window.addEventListener('keypress',(e) => {
     } 
 });
 window.addEventListener('keydown',(e) => {
-    //console.log(e);
+    console.log(e);
     if (e.key === 'Backspace') {
         console.log('clicked',e.key,e.shiftKey);
         if(e.shiftKey === true) {
@@ -385,8 +385,57 @@ window.addEventListener('keydown',(e) => {
             expressionString = '';
             expressionNew = '';
             varNew = '';
+        } else {
+            console.log('Backspace activated');
+            
+            if(operands.textContent !== '0') {
+                console.log('Number Delete');
+                display.textContent = display.textContent.slice(0, display.textContent.length - 1);
+                varNew = varNew.slice(0, varNew.length - 1);
+                operands.textContent = operands.textContent.slice(0, operands.textContent.length - 1);
+                expressionNew = expressionNew.slice(0, expressionNew.length - 1);
+            } else {
+                console.log('Operator Delete');
+                display.textContent = display.textContent.slice(0, display.textContent.length - 3);
+                //varNew = varNew.slice(0, display.textContent.length - 3); 
+                expressionNew = expressionNew.slice(0, expressionNew.length - 3);
+            }
         }
     }
+    if(e.key === 'Enter') {
+        if(var2 === '') {
+            return;
+        }
+        expressionNew += varNew;
+        var1 = compute.computeExpression(expressionNew);
+        varNew = var1;
+        expressionNew = '';
+        if(var1 == 'Infinity') {
+            display.textContent = 'ERROR!';
+            operands.textContent = 'ERROR!';
+        } else {
+            display.textContent = var1;
+            operands.textContent = var1;
+            console.log(var1);
+        }
+        var1 = '';
+        var2 = '';
+        operatorApply = '';
+        return;
+    }
+    if(e.key === 'Escape') {
+        console.log('AC activated');
+        display.textContent = '0';
+        var1 = '';
+        var2 = '';
+        operatorApply = '';
+        dot.disabled = false;
+        operands.textContent = '0';
+        expressionString = '';
+        expressionNew = '';
+        varNew = '';
+    }
+
 });
 
 const compute = (() => {
